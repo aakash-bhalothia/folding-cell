@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RAMPaperSwitch
 
 class DemoCell: FoldingCell {
   
   @IBOutlet weak var closeNumberLabel: UILabel!
   @IBOutlet weak var openNumberLabel: UILabel!
   
+    
+
   var number: Int = 0 {
     didSet {
       closeNumberLabel.text = String(number)
@@ -23,7 +26,8 @@ class DemoCell: FoldingCell {
     
     foregroundView.layer.cornerRadius = 10
     foregroundView.layer.masksToBounds = true
-    
+//    category.layer.masksToBounds = true
+//    category.layer.cornerRadius = 8.0
     super.awakeFromNib()
   }
   
@@ -31,7 +35,28 @@ class DemoCell: FoldingCell {
     
     let durations = [0.26, 0.2, 0.2]
     return durations[itemIndex]
-  }
+}
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var address: UILabel!
+    
+    @IBOutlet weak var category: UILabel!
+    
+    
+    
+    @IBOutlet weak var paperSwitch: RAMPaperSwitch!
+    
+    @IBAction func functionAtSwitchingSwitch(_ sender: AnyObject) {
+        tapAction?(self)
+    }
+    
+    var tapAction: ((UITableViewCell) -> Void)?
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+    }
+    
 }
 
 // MARK: Actions
